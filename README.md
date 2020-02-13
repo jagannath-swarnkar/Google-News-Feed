@@ -9,6 +9,7 @@ UI is designed with `AntD` <a href="https://ant.design/" >Ant.design</a>.
 ## Requirements and Execution
 1. clone the repo from the github or run this command `git clone https://github.com/jagannath-swarnkar/Google-News-Headlines.git` <br/>
 2. run `npm install` to install all the necessory dependencies from package.json. <br/>
-3. run `npm run dev` to run the application in development mode and visit <a href="http://localhost:3000">`http://localhost:3000/`</a>  <br/>
+3. You need to create file named ` .env ` inside the repo and add data `REACT_APP_API_KEY=your_news_api_key_here` .<br/>
+4. run `npm run dev` to run the application in development mode and visit <a href="http://localhost:3000">`http://localhost:3000/`</a>  <br/>
 
 Happy coding :)
