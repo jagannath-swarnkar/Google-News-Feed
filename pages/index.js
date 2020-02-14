@@ -37,6 +37,9 @@ const index = apiData => {
   return (
     <div style={{ height: "100%" }} onScroll={scroll}>
       <Antd style={{ height: "100%" }}>
+        {
+          // <iframe src="https://www.tribuneindia.com/news/kangra-senior-citizen-honoured-39028" style={{height:'100%',width:'100%', border:'none'}}></iframe>
+        }
         {mainData.apiData.map((e, i) => {
           return (
             <div key={i} className="index-main-div">
@@ -84,14 +87,21 @@ const index = apiData => {
             </div>
           );
         })}
+        {pagesize <= apiData.totalResults ? (
+          <Icon
+            type="loading"
+            className="loading-icon"
+            style={{ color: "red" }}
+          />
+        ) : (
+          ""
+        )}
       </Antd>
     </div>
   );
 };
 
 index.getInitialProps = async ({ req }) => {
-  // console.log(pagesize)
-  // e.preventDefault();
   const res = await fetch(
     `https://newsapi.org/v2/top-headlines?pageSize=10&country=in&apiKey=${process.env.REACT_APP_API_KEY}`
   );
@@ -101,10 +111,3 @@ index.getInitialProps = async ({ req }) => {
 };
 
 export default index;
-
-/*
-    `https://newsapi.org/v2/top-headlines?country=in&apiKey=${process.env.REACT_APP_API_KEY}`
-`https://newsapi.org/v1/articles?source=google-news&apiKey=${process.env.REACT_APP_API_KEY}`
-
-
-*/

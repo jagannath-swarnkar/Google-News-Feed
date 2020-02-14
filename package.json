@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "GENERATE_SOURCEMAP=false next",
-    "build": "GENERATE_SOURCEMAP=false next build",
-    "start": "GENERATE_SOURCEMAP=false next start"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export"
   },
   "author": "jagan",
   "license": "ISC",
