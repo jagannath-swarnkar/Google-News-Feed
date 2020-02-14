@@ -23,7 +23,7 @@ const Antd = props => (
           style={{ lineHeight: "64px", width: "100%", display: "flex" }}
         >
           <Menu.Item
-            style={{ fontWeight: "bold", fontSize: " xx-large" , width:'100%'}}
+            style={{ fontWeight: "bold", fontSize: " xx-large", width: "100%" }}
             key="1"
           >
             Google News
@@ -38,10 +38,41 @@ const Antd = props => (
             defaultOpenKeys={["sub1"]}
             style={{ height: "100%", borderRight: 0 }}
           >
-            <Menu.Item key="1">option1</Menu.Item>
-            <Menu.Item key="2">option2</Menu.Item>
-            <Menu.Item key="3">option3</Menu.Item>
-            <Menu.Item key="4">option4</Menu.Item>
+            <Menu.Item
+              key="1"
+              onClick={() => props.newUrl("v2/top-headlines?country=in")}
+            >
+              Top Headlines India
+            </Menu.Item>
+            <Menu.Item
+              onClick={() =>
+                props.newUrl("v2/top-headlines?country=us&category=business")
+              }
+              key="2"
+            >
+              Top headlines US
+            </Menu.Item>
+
+            <Menu.Item
+              key="3"
+              onClick={() =>
+                props.newUrl(
+                  "v2/everything?q=bitcoin&from=2020-01-14&sortBy=publishedAt"
+                )
+              }
+            >
+              All articles about Bitcoin
+            </Menu.Item>
+            <Menu.Item
+              key="4"
+              onClick={() =>
+                props.newUrl(
+                  "v2/top-headlines?sources=bbc-news"
+                )
+              }
+            >
+              Top headlines from BBC News
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="content-layout">

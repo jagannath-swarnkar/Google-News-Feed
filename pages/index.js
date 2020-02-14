@@ -16,6 +16,8 @@ const handleScroll = e => {
 const index = apiData => {
   const [pagesize, setPagesize] = useState(10);
   const [mainData, setMainData] = useState(apiData);
+  const [totalpages,setTotalPages] = useState(apiData.totalResults)
+  const [newUrl, setNewUrl] = useState('v2/top-headlines?country=in')
 
   async function scroll(e) {
     const bottom =
@@ -23,8 +25,7 @@ const index = apiData => {
     if (bottom) {
       if (pagesize <= apiData.totalResults) {
         const res = await fetch(
-          `https://newsapi.org/v2/top-headlines?pageSize=${pagesize +
-            10}&country=in&apiKey=fb24325819be4747b1fe2e70ee40b57b`
+          `https://newsapi.org/${newUrl}&pageSize=${pagesize}&apiKey=fb24325819be4747b1fe2e70ee40b57b`
         );
 
         const data = await res.json();
@@ -33,18 +34,26 @@ const index = apiData => {
       }
     }
   }
+  async function category(e){
+    const res = await fetch(
+      `https://newsapi.org/${e}&pageSize=10&apiKey=fb24325819be4747b1fe2e70ee40b57b`
+    );
+
+    const data = await res.json();
+    setMainData({ apiData: data.articles });
+    setPagesize(pagesize + 10);
+    setNewUrl(e)
+    setTotalPages(data.totalResults)
+  }
 
   return (
     <div style={{ height: "100%" }} onScroll={scroll}>
-      <Antd style={{ height: "100%" }}>
-        {
-          // <iframe src="https://www.tribuneindia.com/news/kangra-senior-citizen-honoured-39028" style={{height:'100%',width:'100%', border:'none'}}></iframe>
-        }
+      <Antd style={{ height: "100%" }} newUrl={category}>
         {mainData.apiData.map((e, i) => {
           return (
             <div key={i} className="index-main-div">
               <Card className="index-card">
-                <a href={e.url} alt={"img"}>
+                <a href={e.url} target="_blank" alt={"img"}>
                   <div style={{ display: "flex" }}>
                     <div style={{ width: "100%" }}>
                       <h3>
@@ -87,7 +96,7 @@ const index = apiData => {
             </div>
           );
         })}
-        {pagesize <= apiData.totalResults ? (
+        {pagesize <= totalpages ? (
           <Icon
             type="loading"
             className="loading-icon"
@@ -103,7 +112,7 @@ const index = apiData => {
 
 index.getInitialProps = async ({ req }) => {
   const res = await fetch(
-    `https://newsapi.org/v2/top-headlines?pageSize=10&country=in&apiKey=${process.env.REACT_APP_API_KEY}`
+    `https://newsapi.org/v2/top-headlines?country=in&pageSize=10&apiKey=${process.env.REACT_APP_API_KEY}`
   );
   const apiData = await res.json();
   console.log({ data: apiData.totalResults });
