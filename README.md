@@ -6,7 +6,7 @@ The app first loads only 10 headlines from-google-new and after scrolling down i
 UI is designed with `AntD` <a href="https://ant.design/" >Ant.design</a>.
 
 ### Visit application: 
-<a href="https://jagan-ae35e.web.app/" style="text-decoration:none" >`App Demo`</a>
+<a href="https://jagan-ae35e.web.app/" target="_blank" >`App Demo`</a>
 
 ## Requirements and Execution
 1. clone the repo from the github or run this command `git clone https://github.com/jagannath-swarnkar/Google-News-Headlines.git` <br/>
